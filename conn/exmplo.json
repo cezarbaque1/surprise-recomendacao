@@ -1,0 +1,60 @@
+[
+    {
+        "idProduto": {
+            "S": "DN4181010"
+        },
+        "name": {
+            "S": "Plus Size - Top Nike Dri-FIT Indy Feminino"
+        },
+        "price": {
+            "N": "161.49"
+        },
+        "link": {
+            "S": "https://redir.lomadee.com/v2/direct/aHR0cHM6Ly93d3cubmlrZS5jb20uYnIvdG9wLXctbmstZGYtaW5keS12bmVjay1wbHVzLWJyYS0wMjMxOTIuaHRtbD9jb3I9SUQ=/LOMADEESOURCEID/5798"
+        },
+        "thumbnail": {
+            "S": "https://imgnike-a.akamaihd.net/1300x1300/023192ID.jpg"
+        },
+        "description": {
+            "S": "True"
+        },
+        "installment": {
+            "S": "True"
+        },
+        "loja": {
+            "S": "ofertas-nike"
+        },
+        "firstName": {
+            "S": "Plus"
+        }
+    },
+    {
+        "idProduto": {
+            "S": "DV2992010"
+        },
+        "name": {
+            "S": "Boné Nike Dri-FIT AeroBill Legacy91 Unissex"
+        },
+        "price": {
+            "N": "151.99"
+        },
+        "link": {
+            "S": "https://redir.lomadee.com/v2/direct/aHR0cHM6Ly93d3cubmlrZS5jb20uYnIvYm9uZS1uaWtlLWRyaS1maXQtYWVyb2JpbGwtbGVnYWN5OTEtdW5pc3NleC0wMjMzMTAuaHRtbD9jb3I9SUQ=/LOMADEESOURCEID/5798"
+        },
+        "thumbnail": {
+            "S": "https://imgnike-a.akamaihd.net/1300x1300/023310ID.jpg"
+        },
+        "description": {
+            "S": "True"
+        },
+        "installment": {
+            "S": "True"
+        },
+        "loja": {
+            "S": "ofertas-nike"
+        },
+        "firstName": {
+            "S": "Boné"
+        }
+    }
+]
