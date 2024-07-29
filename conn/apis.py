@@ -1,6 +1,6 @@
 import requests
 import json
-import var.token
+from var.token import *
     
 def put_products(payload):
     api_url = url + '/surprise-produtos'

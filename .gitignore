@@ -1,3 +1,6 @@
+#variaveis de ambiente
+conn/var/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
