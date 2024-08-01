@@ -4,7 +4,7 @@ import os
 
 if 'URL' in os.environ:
     url = os.getenv('URL')
-    headers = json.loads(os.getenv('HEADERS'))
+    token = os.getenv('TOKEN')
 else:
     # Importa todas as variáveis do módulo 'var.token'
     try:
@@ -12,6 +12,8 @@ else:
         print("Variáveis do módulo 'var.token' foram importadas com sucesso.")
     except ImportError as e:
         print(f"Erro ao importar variáveis do módulo 'var.token': {e}")
+
+headers = {'x-token' : token}
 
 
 def make_request(type, api_url, payload=None):
