@@ -1,6 +1,19 @@
 import requests
 import json
 from var.token import *
+import os
+
+if 'URL' in os.environ:
+    url = os.getenv('URL')
+    headers = os.getenv('HEADERS')
+else:
+    # Importa todas as variáveis do módulo 'var.token'
+    try:
+        from var.token import *
+        print("Variáveis do módulo 'var.token' foram importadas com sucesso.")
+    except ImportError as e:
+        print(f"Erro ao importar variáveis do módulo 'var.token': {e}")
+
 
 def make_request(type, api_url, payload=None):
     try:
