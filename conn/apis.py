@@ -4,7 +4,7 @@ import os
 
 if 'URL' in os.environ:
     url = os.getenv('URL')
-    headers = os.getenv('HEADERS')
+    headers = json.loads(os.getenv('HEADERS'))
 else:
     # Importa todas as variáveis do módulo 'var.token'
     try:
