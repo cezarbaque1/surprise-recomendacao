@@ -1,6 +1,5 @@
 import requests
 import json
-from var.token import *
 import os
 
 if 'URL' in os.environ:
