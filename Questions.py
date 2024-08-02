@@ -66,6 +66,7 @@ def select_product():
             st.rerun()
         else:
             st.error(retorno)
+            pass
 
 def thankyou():
     st.title('Obrigado por Responder!')
@@ -73,19 +74,33 @@ def thankyou():
     if st.button('Responder Novamente'):
         st.session_state.state = 'caracteristicas'
         st.rerun()
+    pass
 
+def mount_products():
+    productsJson = get_all_products()
+    products = pd.DataFrame(productsJson)
+    products = products.drop(columns=['level_0'])
+    productsResp = products[products['respondido'] == 1]
+    if productsResp.empty:
+        products = products.sample(n=6).reset_index()
+    else:
+        productsResp = productsResp.sample(n=2).reset_index()
+        products['respondido'] = 0
+        products = products.sample(n=4).reset_index()
+        products = pd.concat([productsResp, products], ignore_index=True)
+    
+    st.table(products)
+    st.table(productsResp)  
+    st.session_state.products = products
 
 #Define se vou mostrar as caracteristicas ou os produtos e pega os produtos se necessário
 def main():
     if 'state' not in st.session_state:
         st.session_state.state = 'caracteristicas'
-    
+    # del st.session_state.products
     if st.session_state.state == 'produtos':
         if 'products' not in st.session_state:
-            products = get_all_products()
-            products = pd.DataFrame(products)
-            products = products.sample(n=6).reset_index()
-            st.session_state.products = products
+            mount_products()
         select_product()
     
     if st.session_state.state == 'caracteristicas':
@@ -95,4 +110,5 @@ def main():
         thankyou()
 
 if __name__ == '__main__':
+    
     main()
