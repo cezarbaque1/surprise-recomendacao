@@ -89,8 +89,6 @@ def mount_products():
         products = products.sample(n=4).reset_index()
         products = pd.concat([productsResp, products], ignore_index=True)
     
-    st.table(products)
-    st.table(productsResp)  
     st.session_state.products = products
 
 #Define se vou mostrar as caracteristicas ou os produtos e pega os produtos se necessário
