@@ -53,15 +53,26 @@ def select_product():
 
         payload = json.dumps(responses)
         retorno = put_respostas(payload)
-        if retorno == []:
+        
+        products['respondido'] = 1
+        json_result = products.to_json(orient='records')
+        retornoProducts = put_products(json_result)
+
+        if (retorno == []) & (retornoProducts == []):
             st.markdown(retorno)
             st.json(responses)
-            st.session_state.state = 'caracteristicas'
+            st.session_state.state = 'thankyou'
             del st.session_state.products
             st.rerun()
         else:
             st.error(retorno)
 
+def thankyou():
+    st.title('Obrigado por Responder!')
+    st.subheader('Isso vai nos ajudar a melhorar nossas recomendações')
+    if st.button('Responder Novamente'):
+        st.session_state.state = 'caracteristicas'
+        st.rerun()
 
 
 #Define se vou mostrar as caracteristicas ou os produtos e pega os produtos se necessário
@@ -75,10 +86,13 @@ def main():
             products = pd.DataFrame(products)
             products = products.sample(n=6).reset_index()
             st.session_state.products = products
-            
         select_product()
-    else:
+    
+    if st.session_state.state == 'caracteristicas':
         caracteristicas()
+    
+    if st.session_state.state == 'thankyou':
+        thankyou()
 
 if __name__ == '__main__':
     main()
