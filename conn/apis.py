@@ -36,3 +36,7 @@ def put_respostas(payload):
 def get_all_products():
     api_url = url + '/surprise-produtos?idProduto=all'
     return make_request('GET', api_url)
+
+def get_all_respostas():
+    api_url = url + '/surprise-respostas?idResposta=all'
+    return make_request('GET', api_url)

@@ -4,6 +4,8 @@ from conn.perguntas import *
 from conn.apis import *
 from datetime import datetime
 
+st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None)
+
 def caracteristicas():
     perguntas = get_questions()
     perguntas_base = perguntas.groupby(['idPergunta', 'Pergunta']).agg(list).reset_index()
@@ -59,8 +61,6 @@ def select_product():
         retornoProducts = put_products(json_result)
 
         if (retorno == []) & (retornoProducts == []):
-            st.markdown(retorno)
-            st.json(responses)
             st.session_state.state = 'thankyou'
             del st.session_state.products
             st.rerun()

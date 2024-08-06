@@ -4,3 +4,4 @@ ipykernel
 numpy
 lxml
 requests
+scikit-learn
