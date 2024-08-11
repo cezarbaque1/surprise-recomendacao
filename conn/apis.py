@@ -40,3 +40,12 @@ def get_all_products():
 def get_all_respostas():
     api_url = url + '/surprise-respostas?idResposta=all'
     return make_request('GET', api_url)
+
+def post_predict(filebase64):
+    api_url = url + '/surprise-predict'
+    payload = json.dumps({'file' : filebase64 })
+    return make_request('POST', api_url, payload)
+
+def get_predict():
+    api_url = url + '/surprise-predict'
+    return make_request('GET', api_url)
