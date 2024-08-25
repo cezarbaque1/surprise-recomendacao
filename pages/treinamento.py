@@ -4,7 +4,7 @@ from conn.perguntas import *
 from conn.apis import *
 from datetime import datetime
 
-st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None)
+st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None, initial_sidebar_state="collapsed")
 
 def caracteristicas():
     perguntas = get_questions()
