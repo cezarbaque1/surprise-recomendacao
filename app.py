@@ -31,7 +31,6 @@ st.markdown("""
 
 
 def caracteristicas():
-    
     perguntas = get_questions()
     perguntas_base = perguntas.groupby(['idPergunta', 'Pergunta', 'PerguntaOutro']).agg(list).reset_index()
 
