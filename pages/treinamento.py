@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime
 
 import pandas as pd
@@ -94,8 +95,33 @@ def mount_products():
     
     st.session_state.products = products
 
+def _autenticar():
+    """Protege a página de coleta de dados com uma senha simples.
+
+    A senha esperada vem da variável de ambiente TREINO_PASSWORD. Sem ela
+    configurada, a página fica bloqueada (evita exposição pública do coletor).
+    """
+    senha_correta = os.getenv('TREINO_PASSWORD')
+    if not senha_correta:
+        st.warning(
+            'Página protegida. Defina a variável de ambiente TREINO_PASSWORD '
+            'para habilitar o acesso.'
+        )
+        st.stop()
+    if st.session_state.get('treino_auth'):
+        return
+    senha = st.text_input('Senha de acesso', type='password')
+    if st.button('Entrar'):
+        if senha == senha_correta:
+            st.session_state.treino_auth = True
+            st.rerun()
+        else:
+            st.error('Senha incorreta.')
+    st.stop()
+
 #Define se vou mostrar as caracteristicas ou os produtos e pega os produtos se necessário
 def main():
+    _autenticar()
     if 'state' not in st.session_state:
         st.session_state.state = 'caracteristicas'
     # del st.session_state.products
