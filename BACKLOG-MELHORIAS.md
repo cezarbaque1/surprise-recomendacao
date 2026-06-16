@@ -8,6 +8,17 @@ Esforço estimado: P (pequeno) · M (médio) · G (grande)
 
 ---
 
+## ✅ Progresso (entregue na branch `melhorias/surprise`)
+
+- **Sprint 1 — Segurança e base:** S2, S3, S4, Q1, Q2, Q4 + README/D1.
+- **Sprint 2 — Modelo:** M1 (data leakage), M2 (BernoulliNB), M3 (validação cruzada), D4 (pytest).
+- **Sprint 3 — Produto:** U1 (link de compra), U2 (preço), U3 (spinner), S5 (página de treino protegida).
+- **Sprint 4 — Arquitetura/DevOps:** A2 (config central), A3 (docs/API.md), A4 (mover artefatos), Q3 (sandbox/), Q8 (ruff), D2 (LICENSE), D3 (CI), S1 (mitigação documentada).
+
+**Pendentes para próximas rodadas:** S6, Q5, Q6, Q7, M4, M5, M6 (LFS — exige reescrita de histórico), U4, U5, A1, D5.
+
+---
+
 ## 🔒 Segurança
 
 | # | Prioridade | Esforço | Item |

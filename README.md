@@ -65,19 +65,25 @@ perguntas, são enviadas à API e passam a alimentar o modelo.
 ```
 surprise-recomendacao/
 ├── app.py                  # App principal — fluxo de recomendação
-├── pages/treinamento.py    # Página de coleta de avaliações (treino)
+├── pages/treinamento.py    # Página de coleta de avaliações (treino, protegida)
 ├── conn/
+│   ├── config.py           # Configuração central (URL/TOKEN)
 │   ├── apis.py             # Chamadas HTTP à API (produtos/respostas/predict)
-│   ├── perguntas.py        # Banco de perguntas (hardcoded)
+│   ├── perguntas.py        # Banco de perguntas
 │   └── predict.py          # Carrega o .pkl e gera a recomendação
+├── tests/                  # Testes (pytest)
 ├── modelo/                 # Modelos treinados (.pkl)
 ├── ofertas/                # Feeds XML de produtos (Nike, Polishop)
-├── images/                 # Imagens e relatórios do projeto
+├── docs/                   # Relatórios e contrato da API (API.md)
+├── sandbox/                # Protótipos exploratórios (não usados em produção)
+├── images/                 # Imagens do projeto
 ├── base_produtos.ipynb     # ETL dos feeds → API
 ├── naive_training.ipynb    # Treino do modelo
 ├── naive_test.ipynb        # Teste do modelo
+├── .github/workflows/ci.yml# Lint (ruff) + testes (pytest)
 ├── .streamlit/config.toml  # Tema/config do Streamlit
-└── requirements.txt        # Dependências
+├── requirements.txt        # Dependências da aplicação
+└── requirements-dev.txt    # Dependências de desenvolvimento (pytest, ruff)
 ```
 
 ---
@@ -135,7 +141,23 @@ O arquivo `var/token.py` está no `.gitignore` e **não** deve ser versionado.
 
 ---
 
+## 🧪 Testes e qualidade
+
+```bash
+pip install -r requirements-dev.txt
+ruff check conn app.py pages tests   # lint
+pytest -q                            # testes
+```
+
+O CI (GitHub Actions) roda lint + testes a cada push/PR — ver
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
+## 📄 Licença
+
+Distribuído sob a licença MIT — ver [`LICENSE`](LICENSE).
+
 ## 📌 Status e próximos passos
 
 Há um backlog de melhorias mapeado em [`BACKLOG-MELHORIAS.md`](BACKLOG-MELHORIAS.md),
 cobrindo segurança, qualidade de código, modelo de ML, UX, arquitetura e DevOps.
+O contrato das rotas da API está documentado em [`docs/API.md`](docs/API.md).

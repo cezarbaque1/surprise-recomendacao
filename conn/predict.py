@@ -1,4 +1,3 @@
-import pandas as pd
 import joblib
 
 pickle_file_path = 'modelo/predicao_surprise.pkl'
