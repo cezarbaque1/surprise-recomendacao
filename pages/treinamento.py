@@ -1,8 +1,11 @@
-import streamlit as st
 import json
-from conn.perguntas import *
-from conn.apis import *
 from datetime import datetime
+
+import pandas as pd
+import streamlit as st
+
+from conn.apis import get_all_products, put_products, put_respostas
+from conn.perguntas import get_questions
 
 st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None, initial_sidebar_state="collapsed")
 

@@ -1,8 +1,10 @@
-import streamlit as st
 import json
-from conn.perguntas import *
-from conn.apis import *
-from datetime import datetime
+
+import pandas as pd
+import streamlit as st
+
+from conn.apis import get_all_products
+from conn.perguntas import get_questions
 from conn.predict import predict
 
 st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None, initial_sidebar_state="collapsed")
@@ -59,7 +61,7 @@ def select_product():
     products = st.session_state.products #caso a variavel for dataframe
 
     col1, col2, col3 = st.columns([1,3,1])
-    col2.image(products.iloc[st.session_state.nproduct]['thumbnail'], caption=products.iloc[st.session_state.nproduct]['name'], use_column_width=True)
+    col2.image(products.iloc[st.session_state.nproduct]['thumbnail'], caption=products.iloc[st.session_state.nproduct]['name'], use_container_width=True)
 
     col1, col2, col3 = st.columns(3)
     # if col2.button('Ver Loja'):
