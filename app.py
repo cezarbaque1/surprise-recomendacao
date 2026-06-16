@@ -72,7 +72,7 @@ def select_product():
     produto = products.iloc[st.session_state.nproduct]
 
     col1, col2, col3 = st.columns([1,3,1])
-    col2.image(produto['thumbnail'], caption=produto['name'], use_container_width=True)
+    col2.image(produto['thumbnail'], caption=produto['name'], use_column_width=True)
 
     preco = _formata_preco(produto.get('price'))
     if preco:
