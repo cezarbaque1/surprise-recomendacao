@@ -1,8 +1,10 @@
-import streamlit as st
 import json
-from conn.perguntas import *
-from conn.apis import *
-from datetime import datetime
+
+import pandas as pd
+import streamlit as st
+
+from conn.apis import get_all_products
+from conn.perguntas import get_questions
 from conn.predict import predict
 
 st.set_page_config(page_title="Surprise - Recomendação de Produtos", layout="centered", menu_items=None, initial_sidebar_state="collapsed")
@@ -54,34 +56,44 @@ def caracteristicas():
         st.rerun()
     
 
+def _formata_preco(valor):
+    """Formata o preço no padrão R$ 0,00; devolve None se inválido."""
+    if valor in (None, '', 'null'):
+        return None
+    try:
+        return f"R$ {float(valor):.2f}".replace('.', ',')
+    except (TypeError, ValueError):
+        return None
+
+
 def select_product():
     st.title('Presentes para o seu Presenteado')
     products = st.session_state.products #caso a variavel for dataframe
+    produto = products.iloc[st.session_state.nproduct]
 
     col1, col2, col3 = st.columns([1,3,1])
-    col2.image(products.iloc[st.session_state.nproduct]['thumbnail'], caption=products.iloc[st.session_state.nproduct]['name'], use_column_width=True)
+    col2.image(produto['thumbnail'], caption=produto['name'], use_container_width=True)
+
+    preco = _formata_preco(produto.get('price'))
+    if preco:
+        col2.subheader(preco)
 
     col1, col2, col3 = st.columns(3)
-    # if col2.button('Ver Loja'):
-    #     st.session_state.state = 'thankyou'
-    #     del st.session_state.products
-    #     del st.session_state.nproduct
-    #     st.rerun()
-    
+
     if col1.button('Sair'):
         del st.session_state.state
         del st.session_state.nproduct
         st.rerun()
-    
-    st.markdown('<div class="right-align">', unsafe_allow_html=True)
-    
+
+    # Link de afiliado para a loja (monetização)
+    link = produto.get('link')
+    if link:
+        col2.link_button('Ver Loja', link)
+
     proximoEnabled = True if st.session_state.nproduct == 4 else False
     if col3.button('Outro', disabled=proximoEnabled):
         st.session_state.nproduct += 1
-        
         st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
 def thankyou():
     st.title('Obrigado por utilizar a Surprise')
@@ -110,7 +122,8 @@ def main():
 
     if st.session_state.state == 'produtos':
         if 'products' not in st.session_state:
-            mount_products()
+            with st.spinner('Buscando as melhores recomendações...'):
+                mount_products()
         select_product()
         
     

@@ -1,0 +1,6 @@
+line-length = 100
+extend-exclude = ["sandbox", "venv", "modelo", "ofertas", "var"]
+
+[lint]
+# Foco em erros reais (pyflakes): imports não usados, nomes indefinidos, etc.
+select = ["F"]

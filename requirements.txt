@@ -1,7 +1,10 @@
-pandas
-streamlit
-ipykernel
-numpy
-lxml
-requests
-scikit-learn
+pandas==2.2.2
+streamlit==1.37.1
+ipykernel==6.29.5
+numpy==2.1.0
+lxml==5.2.2
+requests==2.32.3
+scikit-learn==1.5.1
+joblib==1.4.2
+python-dotenv==1.0.1
+openpyxl==3.1.5
